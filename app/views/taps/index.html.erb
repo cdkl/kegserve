@@ -1,0 +1,31 @@
+<h1>Taps</h1>
+<%= link_to 'New Tap', new_tap_path, class: 'btn btn-primary' %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @taps.each do |tap| %>
+      <tr>
+        <td><%= tap.id %></td>
+        <td><%= tap.name %></td>
+        <td>
+          <%= link_to 'Show', tap_path(tap), class: 'btn btn-info' %>
+          <%= link_to 'Edit', edit_tap_path(tap), class: 'btn btn-warning' %>
+          <%= link_to 'Destroy', tap_path(tap), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% if @taps.empty? %>
+  <p>No taps found.</p>
+<% else %>
+  <p>Total Taps: <%= @taps.count %></p>
+<% end %>

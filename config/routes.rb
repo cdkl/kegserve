@@ -11,4 +11,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get "taps" => "taps#index", as: :taps
+  get "taps/new" => "taps#new", as: :new_tap
+  get "taps/:id" => "taps#show", as: :tap
+  post "taps" => "taps#create"
+  get "taps/:id/edit" => "taps#edit", as: :edit_tap
+  patch "taps/:id" => "taps#update"
+  put "taps/:id" => "taps#update"
+  delete "taps/:id" => "taps#destroy", as: :destroy_tap
+  get "taps/:id/beverage" => "taps#beverage", as: :tap_beverage
 end

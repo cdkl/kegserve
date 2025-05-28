@@ -1,0 +1,13 @@
+<h1>Tap <%= @tap.name %> </h1>
+<p>
+  <strong>Id:</strong>
+  <%= @tap.id %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @tap.name %>
+</p>
+<p>
+    <%= link_to 'Edit Tap', edit_tap_path(@tap) %> |
+    <%= link_to 'Back to Taps List', taps_path %>
+</p>

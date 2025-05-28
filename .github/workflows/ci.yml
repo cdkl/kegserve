@@ -85,7 +85,7 @@ jobs:
           bundler-cache: true
 
       - name: Set executable permissions for scripts
-        run: chmod +x bin/rails bin/rspec bin/rake
+        run: chmod +x bin/rails bin/rake
 
       - name: Run tests
         env:

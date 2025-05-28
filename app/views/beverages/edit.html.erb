@@ -1,0 +1,54 @@
+<h1>Beverage edit</h1>
+<%= form_with(model: @beverage, local: true) do |form| %>
+  <% if @beverage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@beverage.errors.count, "error") %> prohibited this beverage from being saved:</h2>
+
+      <ul>
+        <% @beverage.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <div class="row mb-3">
+      <div class="col-md-2">
+        <%= form.label :name %>
+      </div>
+      <div class="col-md-10">
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-2">
+        <%= form.label :style %>
+      </div>
+      <div class="col-md-10">
+        <%= form.text_field :style, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-2">
+        <%= form.label :ibu %>
+      </div>
+      <div class="col-md-10">
+        <%= form.text_field :ibu, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-2">
+        <%= form.label :abv %>
+      </div>
+      <div class="col-md-10">
+        <%= form.text_field :abv, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Update Beverage', class: 'btn btn-primary' %>
+  </div>
+  <%= link_to 'Back to Beverages List', beverages_path, class: 'btn btn-secondary mt-3' %>
+<% end %>

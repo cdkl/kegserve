@@ -20,4 +20,13 @@ Rails.application.routes.draw do
   put "taps/:id" => "taps#update"
   delete "taps/:id" => "taps#destroy", as: :destroy_tap
   get "taps/:id/beverage" => "taps#beverage", as: :tap_beverage
+
+  get "beverages" => "beverages#index", as: :beverages
+  get "beverages/new" => "beverages#new", as: :new_beverage
+  get "beverages/:id" => "beverages#show", as: :beverage
+  post "beverages" => "beverages#create"
+  get "beverages/:id/edit" => "beverages#edit", as: :edit_beverage
+  patch "beverages/:id" => "beverages#update"
+  put "beverages/:id" => "beverages#update"
+  delete "beverages/:id" => "beverages#destroy", as: :destroy_beverage
 end

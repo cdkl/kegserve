@@ -1,0 +1,40 @@
+<h1>Beverages</h1>
+<%= link_to 'New Beverage', new_beverage_path, class: 'btn btn-primary' %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Style</th>
+      <th>IBU</th>
+      <th>ABV</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @beverages.each do |beverage| %>
+      <tr>
+        <td><%= beverage.id %></td>
+        <td><%= beverage.name %></td>
+        <td><%= beverage.style %></td>
+        <td><%= beverage.ibu %></td>
+        <td><%= beverage.abv %></td>
+        <td>
+          <%= link_to 'Show', beverage_path(beverage), class: 'btn btn-info' %>
+          <%= link_to 'Edit', edit_beverage_path(beverage), class: 'btn btn-warning' %>
+          <%= button_to 'Destroy',
+                        beverage_path(beverage),
+                        method: :delete,
+                        form: { data: { turbo_confirm: 'Are you sure?' } },
+                        class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if @beverages.empty? %>
+  <p>No beverages found.</p>
+<% else %>
+  <p>Total Beverages: <%= @beverages.count %></p>
+<% end %>
+<%= link_to 'View Taps', taps_path, class: 'btn btn-secondary mt-3' %>

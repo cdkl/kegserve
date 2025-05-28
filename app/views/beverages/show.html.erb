@@ -1,0 +1,33 @@
+<h1>Beverage <%= @beverage.name %></h1>
+<p>
+  <strong>Id:</strong>
+  <%= @beverage.id %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @beverage.name %>
+</p>
+<p>
+  <strong>Style:</strong>
+  <%= @beverage.style %>
+</p>
+<p>
+  <strong>IBU:</strong>
+  <%= @beverage.ibu %>
+</p>
+<p>
+  <strong>ABV:</strong>
+  <%= @beverage.abv %>
+</p>
+<p>
+  <strong>Created At:</strong>
+  <%= @beverage.created_at %>
+</p>
+<p>
+  <strong>Updated At:</strong>
+  <%= @beverage.updated_at %>
+</p>
+<p>
+  <%= link_to 'Edit Beverage', edit_beverage_path(@beverage) %> |
+  <%= link_to 'Back to Beverages List', beverages_path %>
+</p>

@@ -16,7 +16,11 @@
         <td>
           <%= link_to 'Show', tap_path(tap), class: 'btn btn-info' %>
           <%= link_to 'Edit', edit_tap_path(tap), class: 'btn btn-warning' %>
-          <%= link_to 'Destroy', tap_path(tap), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <%= button_to 'Destroy', 
+                        tap_path(tap), 
+                        method: :delete,
+                        form: { data: { turbo_confirm: 'Are you sure?' } },
+                        class: 'btn btn-danger' %>
         </td>
       </tr>
     <% end %>
@@ -29,3 +33,4 @@
 <% else %>
   <p>Total Taps: <%= @taps.count %></p>
 <% end %>
+<%= link_to 'View Beverages', beverages_path, class: 'btn btn-secondary mt-3' %>

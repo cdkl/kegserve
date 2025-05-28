@@ -17,11 +17,11 @@ jobs:
     - name: Set executable permissions for scripts
       run: chmod +x bin/rails bin/rake
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag cdklein/kegserve:$(date +%s)
+      run: docker build . --file Dockerfile --tag cdklein/kegserve:latest
     - name: Push image to docker hub
       run: |
         docker login --username cdklein --password ${{ secrets.DOCKER_HUB_TOKEN }}
-        docker push cdklein/kegserve:$(date +%s)
+        docker push cdklein/kegserve:latest
 
 
         

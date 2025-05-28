@@ -29,4 +29,21 @@ Rails.application.routes.draw do
   patch "beverages/:id" => "beverages#update"
   put "beverages/:id" => "beverages#update"
   delete "beverages/:id" => "beverages#destroy", as: :destroy_beverage
+
+  # API routes
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :taps, only: [ :index, :show ] do
+        collection do
+          get "search", to: "taps#search"
+        end
+      end
+
+      resources :beverages, only: [ :index, :show ] do
+        collection do
+          get "search", to: "beverages#search"
+        end
+      end
+    end
+  end
 end

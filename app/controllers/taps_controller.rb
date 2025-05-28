@@ -3,6 +3,7 @@ class TapsController < ApplicationController
 
   def index
     @taps = Tap.all
+    @beverages = Beverage.all
   end
 
   def show
@@ -17,8 +18,7 @@ class TapsController < ApplicationController
 
   def edit
     set_tap
-    # Assuming you want to edit the tap's beverage as well
-    @beverage = @tap.beverage if @tap.beverage.present?
+    @beverages = Beverage.all
   end
 
   def create
@@ -32,7 +32,11 @@ class TapsController < ApplicationController
 
   def update
     if @tap.update(tap_params)
-      redirect_to @tap, notice: "Tap was successfully updated."
+      if request.referrer&.include?("/taps") && !request.referrer&.include?("/taps/#{@tap.id}")
+        redirect_back(fallback_location: taps_path, notice: "Tap was successfully updated.")
+      else
+        redirect_to @tap, notice: "Tap was successfully updated."
+      end
     else
       render :edit
     end
@@ -50,6 +54,6 @@ class TapsController < ApplicationController
   end
 
   def tap_params
-    params.require(:tap).permit(:name, :location, :status)
+    params.require(:tap).permit(:name, :beverage_id)
   end
 end

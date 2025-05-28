@@ -5,6 +5,7 @@
     <tr>
       <th>Id</th>
       <th>Name</th>
+      <th>Beverage</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -13,6 +14,17 @@
       <tr>
         <td><%= tap.id %></td>
         <td><%= tap.name %></td>
+        <td>
+          <%= form_with(model: tap, local: true, class: 'd-inline') do |form| %>
+            <%= form.collection_select :beverage_id, 
+                                     @beverages, 
+                                     :id, 
+                                     :name, 
+                                     { include_blank: "No beverage" },
+                                     { class: 'form-select',
+                                       onchange: 'this.form.submit()' } %>
+          <% end %>
+        </td>
         <td>
           <%= link_to 'Show', tap_path(tap), class: 'btn btn-info' %>
           <%= link_to 'Edit', edit_tap_path(tap), class: 'btn btn-warning' %>

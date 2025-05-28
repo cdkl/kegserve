@@ -12,15 +12,23 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field mb-3">
     <%= form.label :name %>
     <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :beverage_id, "Beverage" %>
+    <%= form.collection_select :beverage_id, @beverages, :id, :name, 
+                             { include_blank: "No beverage" }, 
+                             { class: 'form-control' } %>
   </div>
 
   <div class="actions">
     <%= form.submit 'Update Tap', class: 'btn btn-primary' %>
   </div>
 <% end %>
+
 <p>
   <%= link_to 'Back to Taps List', taps_path, class: 'btn btn-secondary' %>
 </p>

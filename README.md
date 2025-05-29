@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Kegserve
 
-Things you may want to cover:
+A simple service for specifying keg tap contents, intended to be read and presented by a Magtag device.
 
-* Ruby version
+### History
 
-* System dependencies
+This is a Rails rewrite of a Laravel service that was cobbled together in the past. The main goals here: 
 
-* Configuration
+* Replicate the behaviour of defining beverages, and setting tap assignments, so that a display device can fetch them.
+* Containerize the whole thing and push out to Docker Hub so that my [homelab definition](https://github.com/cdkl/homelab) can deploy it to the local k3s cluster.
+* Keep data storage simple (we're talking literally bytes here) but make sure the sqlite db is persisted properly in deployment (not done yet.)
 
-* Database creation
+### Application
 
-* Database initialization
+Currently serves /taps and /beers endpoints.
 
-* How to run the test suite
+Still needs a root page.
 
-* Services (job queues, cache servers, search engines, etc.)
+Also has JSON read access to taps (and their beverages) via /api/v1/taps
 
-* Deployment instructions
+### Setup
 
-* ...
+Running locally requires nothing more than normal Rails app setup (though I haven't exercised this fresh.)
+
+The github workflow for docker-image shows how it is built and pushed out to docker hub. This image requires specifying the correct `RAILS_MASTER_KEY` as an environment variable at runtime. If you fork this, you will have to create this yourself (it will live in `config/master.key`.)

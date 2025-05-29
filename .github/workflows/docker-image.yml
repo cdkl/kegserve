@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set executable permissions for scripts
-      run: chmod +x bin/rails bin/rake bin/docker-entrypoint
+      run: chmod +x bin/*
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag cdklein/kegserve:latest
     - name: Push image to docker hub

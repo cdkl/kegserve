@@ -7,24 +7,34 @@ on:
     branches: [ "main" ]
 
 env:
-  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }} 
+  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+  IMAGE_NAME: cdklein/kegserve
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Set up environment variables
+      run: |
+        echo "BUILD_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+        echo "BUILD_VERSION=$(date +'%Y%m%d.%H%M')" >> $GITHUB_ENV
+    
     - name: Set executable permissions for scripts
       run: chmod +x bin/*
+    
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag cdklein/kegserve:latest
+      run: |
+        docker build . --file Dockerfile \
+          --tag ${{ env.IMAGE_NAME }}:latest \
+          --tag ${{ env.IMAGE_NAME }}:${{ env.BUILD_VERSION }}
+    
     - name: Push image to docker hub
       run: |
         docker login --username cdklein --password ${{ secrets.DOCKER_HUB_TOKEN }}
-        docker push cdklein/kegserve:latest
+        docker push -a ${{ env.IMAGE_NAME }}
 
 
-        
+

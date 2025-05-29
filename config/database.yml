@@ -21,15 +21,14 @@ test:
   database: storage/test.sqlite3
 
 
-# Store production database in the storage/ directory, which by default
-# is mounted as a persistent Docker volume in config/deploy.yml.
+# For Docker, the database files are stored in a volume mounted at /data.
 production:
   primary:
     <<: *default
-    database: storage/production.sqlite3
+    database: <%= ENV.fetch('SQLITE_DB_PATH', '/data/production.sqlite3') %>
   cache:
     <<: *default
-    database: storage/production_cache.sqlite3
+    database: <%= ENV.fetch('SQLITE_CACHE_PATH', '/data/cache.sqlite3') %>
     migrations_paths: db/cache_migrate
   queue:
     <<: *default
